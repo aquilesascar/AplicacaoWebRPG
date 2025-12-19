@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <title>Heróis da Guilda</title>
     <link rel="stylesheet" href="css/estilo.css">
+    <script>
+        function confirmarExclusao(nome) {
+            return confirm("Tem certeza que deseja banir o herói " + nome + " da guilda?");
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <a href="index.php">⬅ Voltar</a>
-        <h2>🛡️ Recrutar Novo Herói</h2>
+        <h2>🛡️ Gerenciar Heróis</h2>
         
         <form action="salvar_heroi.php" method="POST">
             <input type="text" name="nome" placeholder="Nome do Herói" required>
@@ -27,10 +32,9 @@
         <h3>Membros Ativos</h3>
         <table>
             <tr>
-                <th>ID</th><th>Nome</th><th>Classe</th><th>Nível</th>
+                <th>ID</th><th>Nome</th><th>Classe</th><th>Nível</th><th>Ações</th>
             </tr>
             <?php
-            // Inclui a conexão aqui para fazer a listagem
             include 'conexao.php';
             
             $sql = "SELECT * FROM aquiles_rpg.herois ORDER BY id DESC";
@@ -42,6 +46,12 @@
                 echo "<td>" . htmlspecialchars($row['nome']) . "</td>";
                 echo "<td>" . $row['classe'] . "</td>";
                 echo "<td>" . $row['nivel'] . "</td>";
+                echo "<td>";
+                // Botão de Editar (Passa o ID via URL)
+                echo "<a href='editar_heroi.php?id=" . $row['id'] . "'>✏️ Editar</a> | ";
+                // Botão de Excluir (Passa o ID via URL)
+                echo "<a href='excluir_heroi.php?id=" . $row['id'] . "' onclick='return confirmarExclusao(\"" . $row['nome'] . "\")' style='color:red;'>❌ Excluir</a>";
+                echo "</td>";
                 echo "</tr>";
             }
             ?>

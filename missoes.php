@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Quadro de Missões</title>
     <link rel="stylesheet" href="css/estilo.css">
+    <script>
+        function confirmarExclusao(titulo) {
+            return confirm("Tem certeza que deseja rasgar o pergaminho da missão: " + titulo + "?");
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -27,10 +32,9 @@
         <h3>Quadro de Avisos</h3>
         <table>
             <tr>
-                <th>ID</th><th>Missão</th><th>Recompensa</th><th>Dificuldade</th>
+                <th>ID</th><th>Missão</th><th>Recompensa</th><th>Dificuldade</th><th>Ações</th>
             </tr>
             <?php
-            // Inclui a conexão para a listagem
             include 'conexao.php';
 
             $sql = "SELECT * FROM aquiles_rpg.missoes ORDER BY id DESC";
@@ -42,6 +46,11 @@
                 echo "<td>" . htmlspecialchars($row['titulo']) . "</td>";
                 echo "<td>" . $row['recompensa'] . "</td>";
                 echo "<td>" . $row['dificuldade'] . "</td>";
+                echo "<td>";
+                // Botões de Editar e Excluir
+                echo "<a href='editar_missao.php?id=" . $row['id'] . "'>✏️ Editar</a> | ";
+                echo "<a href='excluir_missao.php?id=" . $row['id'] . "' onclick='return confirmarExclusao(\"" . $row['titulo'] . "\")' style='color:red;'>❌ Excluir</a>";
+                echo "</td>";
                 echo "</tr>";
             }
             ?>
