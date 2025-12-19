@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$titulo, $recompensa, $dificuldade]);
         
-        // SUCESSO: Manda de volta para a tela de missões
         header("Location: missoes.php");
         exit();
 

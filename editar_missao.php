@@ -1,7 +1,7 @@
 <?php
 include 'conexao.php';
 
-// Verifica ID
+//Verifica ID
 if (!isset($_GET['id'])) {
     header("Location: missoes.php");
     exit();
@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Busca dados atuais
+//busca dados atuais
 $sql = "SELECT * FROM aquiles_rpg.missoes WHERE id = ?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$id]);

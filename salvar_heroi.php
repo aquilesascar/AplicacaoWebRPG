@@ -1,14 +1,14 @@
 <?php
 include 'conexao.php';
 
-// Verifica se os dados chegaram via POST
+//verifica se os dados chegaram via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
     $classe = $_POST['classe'];
     $nivel = $_POST['nivel'];
 
     try {
-        // Prepara o SQL (segurança contra invasão)
+        
         $sql = "INSERT INTO aquiles_rpg.herois (nome, classe, nivel) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$nome, $classe, $nivel]);

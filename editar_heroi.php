@@ -1,7 +1,7 @@
 <?php
 include 'conexao.php';
 
-// Verifica se veio um ID na URL
+//Verifica se veio um ID na URL
 if (!isset($_GET['id'])) {
     header("Location: herois.php");
     exit();
@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Busca os dados atuais do herói
+//Busca os dados atuais do herói
 $sql = "SELECT * FROM aquiles_rpg.herois WHERE id = ?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$id]);

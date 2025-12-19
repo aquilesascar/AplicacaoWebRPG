@@ -1,6 +1,4 @@
 <?php
-// Configuração dos IPs
-// Comente a linha que NÃO estiver usando
 // $host = "10.90.24.54";   // LABORATÓRIO
 $host = "200.18.128.54"; // CASA
 
