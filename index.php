@@ -2,13 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Taverna do Dragão Manco</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Taverna do Dragão</title>
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
     <div class="container">
-        <h1>🐉 Taverna do Dragão Manco 🐉</h1>
-        <p>Bem-vindo, Mestre da Guilda (Versão PHP).</p>
+        <h1>🐉 Taverna do Dragão 🐉</h1>
+        <p>Bem-vindo, Mestre da Guilda.</p>
         <br>
         
         <a href="herois.php"><button>🛡️ Gerenciar Heróis</button></a>
@@ -16,7 +16,7 @@
         <a href="missoes.php"><button>📜 Gerenciar Missões</button></a>
         
         <br><br>
-        <img src="https://img.icons8.com/color/96/000000/rpg-game.png" alt="RPG">
+        <img src="https://img.icons8.com/?size=100&id=HH4w8R2fVb0R&format=png&color=000000" alt="RPG">
     </div>
 </body>
 </html>

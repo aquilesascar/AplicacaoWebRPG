@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Heróis da Guilda</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
     <div class="container">
