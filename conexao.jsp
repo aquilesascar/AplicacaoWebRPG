@@ -17,8 +17,8 @@
         String url = "jdbc:postgresql://" + ip + ":5432/" + banco;
         
         // ATENÇÃO: Coloque seu usuário e senha reais aqui
-        String usuario = "seu_usuario"; 
-        String senha = "sua_senha";
+        String usuario = "aula"; 
+        String senha = "aula";
 
         conexao = DriverManager.getConnection(url, usuario, senha);
 
