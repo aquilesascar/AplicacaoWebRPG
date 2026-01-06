@@ -104,6 +104,23 @@ Como este projeto utiliza Laravel, a instalação requer o **Composer** e alguns
 
 ---
 
+### 📂 Organização do Código (MVC)
+
+O código fonte principal encontra-se dentro da pasta `taverna-rpg`:
+
+* 📂 **app/Models**:
+    * `Heroi.php`: Mapeia a tabela `aquiles_rpg.herois`.
+    * `Missao.php`: Mapeia a tabela `aquiles_rpg.missoes`.
+* 📂 **app/Http/Controllers**:
+    * `HeroiController.php`: Lógica de CRUD para heróis.
+    * `MissaoController.php`: Lógica de CRUD para missões.
+* 📂 **resources/views**:
+    * Arquivos `.blade.php` contendo o HTML e a interface do usuário.
+* 📂 **routes**:
+    * `web.php`: Definição das rotas e URLs amigáveis.
+      
+---
+
 ## 🗄️ Estrutura do Banco de Dados
 
 O projeto se conecta a um esquema existente (`aquiles_rpg`) com a seguinte estrutura:
@@ -127,21 +144,6 @@ CREATE TABLE aquiles_rpg.missoes (
     recompensa DECIMAL(10, 2),
     dificuldade VARCHAR(50)
 );
-
-## 📂 Organização do Código (MVC)
-
-O código fonte principal encontra-se dentro da pasta `taverna-rpg`:
-
-* 📂 **app/Models**:
-    * `Heroi.php`: Mapeia a tabela `aquiles_rpg.herois`.
-    * `Missao.php`: Mapeia a tabela `aquiles_rpg.missoes`.
-* 📂 **app/Http/Controllers**:
-    * `HeroiController.php`: Lógica de CRUD para heróis.
-    * `MissaoController.php`: Lógica de CRUD para missões.
-* 📂 **resources/views**:
-    * Arquivos `.blade.php` contendo o HTML e a interface do usuário.
-* 📂 **routes**:
-    * `web.php`: Definição das rotas e URLs amigáveis.
 
 ---
 
