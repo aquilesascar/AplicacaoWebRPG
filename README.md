@@ -129,27 +129,23 @@ CREATE TABLE aquiles_rpg.missoes (
 );
 
 ## 📂 Organização do Código (MVC)
-O código fonte principal encontra-se dentro da pasta taverna-rpg:
 
-📂 app/Models:
+O código fonte principal encontra-se dentro da pasta `taverna-rpg`:
 
-Heroi.php: Mapeia a tabela aquiles_rpg.herois.
+* 📂 **app/Models**:
+    * `Heroi.php`: Mapeia a tabela `aquiles_rpg.herois`.
+    * `Missao.php`: Mapeia a tabela `aquiles_rpg.missoes`.
+* 📂 **app/Http/Controllers**:
+    * `HeroiController.php`: Lógica de CRUD para heróis.
+    * `MissaoController.php`: Lógica de CRUD para missões.
+* 📂 **resources/views**:
+    * Arquivos `.blade.php` contendo o HTML e a interface do usuário.
+* 📂 **routes**:
+    * `web.php`: Definição das rotas e URLs amigáveis.
 
-Missao.php: Mapeia a tabela aquiles_rpg.missoes.
-
-📂 app/Http/Controllers:
-
-HeroiController.php: Lógica de CRUD para heróis.
-
-MissaoController.php: Lógica de CRUD para missões.
-
-📂 resources/views:
-
-Arquivos .blade.php contendo o HTML e a interface do usuário.
-
-📂 routes:
-
-web.php: Definição das rotas e URLs amigáveis.
+---
 
 ## ✒️ Autor
-Desenvolvido por Aquiles Disciplina de Desenvolvimento Web - IFMG
+
+**Desenvolvido por Aquiles**
+*Disciplina de Desenvolvimento Web - IFMG*
