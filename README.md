@@ -1,90 +1,155 @@
-# 🐉 Taverna do Dragão - Sistema de Gestão de Guilda
+# 🐉 Taverna do Dragão - Sistema de Gestão de Guilda (Laravel Edition)
 
-> Uma aplicação WEB para gerenciamento de Aventureiros e Missões em um cenário de RPG medieval.
+> Uma aplicação WEB completa para gerenciamento de Aventureiros e Missões em um cenário de RPG medieval, migrada para arquitetura MVC moderna.
 
-## 📋 Sobre o Projeto
-Este projeto foi desenvolvido como requisito avaliativo para a disciplina de Desenvolvimento Web do curso de Sistemas de Informação (IFMG). O objetivo é demonstrar a aplicação dos conceitos de **CRUD** (Create, Read, Update, Delete) utilizando tecnologias web tradicionais e conexão com banco de dados relacional.
+---
 
-A aplicação simula o sistema administrativo de uma guilda, permitindo:
+## 📖 Sobre o Projeto
+
+Este projeto nasceu como uma aplicação em **PHP Nativo (Procedural)** para demonstrar conceitos de conexão com banco de dados e CRUD. Agora, ele foi evoluído para utilizar o framework **Laravel**, adotando os padrões de mercado para desenvolvimento web robusto.
+
+A aplicação simula o sistema administrativo de uma guilda de aventureiros, permitindo ao "Mestre da Guilda":
 - Recrutar (cadastrar) novos heróis.
-- Publicar (cadastrar) novas missões.
-- Gerenciar (editar/excluir) registros existentes.
+- Gerenciar atributos (editar nível e classes).
+- Publicar missões no quadro de avisos.
+- Gerenciar recompensas e dificuldades.
 
-## 🚀 Tecnologias Utilizadas
+### 🔄 A Evolução (De PHP Puro para MVC)
+O projeto passou por uma refatoração completa para separar responsabilidades:
+- **Antes:** Lógica de banco, HTML e regras de negócio misturadas em arquivos únicos (ex: `herois.php`).
+- **Agora:** Arquitetura **MVC (Model-View-Controller)** organizada:
+  - **Models:** Gerenciam a interação com o Banco de Dados (Eloquent ORM).
+  - **Views:** Templates limpos usando a engine **Blade**.
+  - **Controllers:** Gerenciam o fluxo de dados e validações.
 
-* **Front-end:** HTML5, CSS3 (Estilização Temática), JavaScript (Validação).
-* **Back-end:** PHP (Vanilla/Nativo).
-* **Banco de Dados:** PostgreSQL (Acesso Remoto).
-* **Conexão:** Biblioteca PDO (PHP Data Objects).
-* **Servidor Web:** Apache (via XAMPP).
+---
 
-## ⚙️ Funcionalidades
+## 🚀 Tecnologias e Ferramentas
+
+* **Backend:** PHP 8.2+ com Framework **Laravel 11**.
+* **Banco de Dados:** PostgreSQL (Conexão Remota via PDO/Eloquent).
+* **Frontend:** HTML5, CSS3 (Estilização Temática RPG), JavaScript.
+* **Gerenciador de Dependências:** Composer.
+* **Servidor:** PHP Built-in Server (via Artisan).
+
+---
+
+## ⚙️ Funcionalidades Implementadas
 
 ### 🛡️ Módulo de Heróis
-* **Cadastro:** Nome, Classe (Guerreiro, Mago, Ladino, Clérigo) e Nível.
-* **Listagem:** Visualização tabular dos heróis ativos.
-* **Edição:** Alteração de classe ou nível.
-* **Exclusão:** Remoção de heróis (com confirmação via JS).
+* **Listagem:** Visualização de todos os membros da guilda.
+* **Cadastro:** Validação de campos (Nome obrigatório, Nível entre 1-100).
+* **Edição:** Atualização de classe e nível.
+* **Exclusão:** Remoção segura com confirmação via JavaScript e método HTTP DELETE.
 
 ### 📜 Módulo de Missões
-* **Cadastro:** Título, Recompensa em Ouro e Dificuldade.
-* **Listagem:** Visualização das missões disponíveis.
-* **Edição:** Ajuste de recompensas ou dificuldade.
-* **Exclusão:** Cancelamento de missões.
+* **Quadro de Avisos:** Listagem de missões ordenadas pela mais recente.
+* **Publicação:** Definição de título, recompensa em ouro e dificuldade.
+* **Gestão:** Edição de valores e cancelamento (exclusão) de missões.
 
 ---
 
 ## 🔧 Configuração e Instalação
 
+Como este projeto utiliza Laravel, a instalação requer o **Composer** e alguns comandos de terminal.
+
 ### Pré-requisitos
-* **XAMPP** instalado (com Apache e PHP).
-* Acesso à internet (para conexão com o banco remoto).
+* PHP instalado.
+* Composer instalado.
+* Git (opcional).
+* Acesso ao banco de dados PostgreSQL.
 
 ### Passo a Passo
 
-1.  **Clone ou Baixe** os arquivos deste projeto.
-2.  Mova a pasta do projeto para o diretório padrão do servidor Apache:
-    * Windows: `C:\xampp\htdocs\`
-3.  **Habilite o Driver PostgreSQL no PHP:**
-    * Abra o painel do XAMPP.
-    * Clique em "Config" no Apache > `php.ini`.
-    * Procure pela linha: `;extension=pdo_pgsql`.
-    * Remova o ponto e vírgula (`;`) do início para descomentar.
-    * Salve e **Reinicie o Apache**.
-4.  **Configure o Banco de Dados:**
-    * Abra o arquivo `conexao.php`.
-    * Verifique a variável `$host`. Descomente o IP correto dependendo do local de acesso:
-        ```php
-        // $host = "10.90.24.54";   // Laboratório
-        $host = "200.18.128.54"; // Casa
-        ```
-    * Insira seu usuário e senha nas variáveis `$user` e `$password`.
+1.  **Clone ou Baixe** o projeto e acesse a pasta da aplicação Laravel:
+    ```bash
+    cd taverna-rpg
+    ```
 
-5.  **Acesse:**
-    * Abra o navegador e digite: `http://localhost/AplicacaoWebRPG`
+2.  **Instale as Dependências do Framework:**
+    ```bash
+    composer install
+    ```
+
+3.  **Configure o Ambiente:**
+    * Copie o arquivo de exemplo de configuração:
+        * Windows: `copy .env.example .env`
+        * Linux/Mac: `cp .env.example .env`
+    * Abra o arquivo `.env` e configure a conexão com o banco:
+    ```ini
+    DB_CONNECTION=pgsql
+    DB_HOST=200.18.128.54
+    DB_PORT=5432
+    DB_DATABASE=aula
+    DB_USERNAME=seu_usuario
+    DB_PASSWORD=sua_senha
+    DB_SCHEMA=aquiles_rpg  # Schema específico do projeto
+    
+    # Define driver de sessão como arquivo para evitar criar tabelas extras
+    SESSION_DRIVER=file
+    ```
+
+4.  **Gere a Chave de Criptografia:**
+    ```bash
+    php artisan key:generate
+    ```
+
+5.  **Inicie o Servidor:**
+    ```bash
+    php artisan serve
+    ```
+
+6.  **Acesse a Aplicação:**
+    Abra o navegador em: `http://127.0.0.1:8000`
 
 ---
 
-## 🗄️ Estrutura do Banco de Dados (SQL)
+## 🗄️ Estrutura do Banco de Dados
 
-O sistema utiliza o esquema `aquiles_rpg` (ou o nome do seu usuário) dentro do banco `aula`.
+O projeto se conecta a um esquema existente (`aquiles_rpg`) com a seguinte estrutura:
 
 ```sql
--- Criação do Esquema
-CREATE SCHEMA aquiles_rpg;
+-- Schema
+CREATE SCHEMA IF NOT EXISTS aquiles_rpg;
 
 -- Tabela de Heróis
 CREATE TABLE aquiles_rpg.herois (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
+    nome VARCHAR(255) NOT NULL,
     classe VARCHAR(50),
-    nivel INT
+    nivel INTEGER
 );
 
 -- Tabela de Missões
 CREATE TABLE aquiles_rpg.missoes (
     id SERIAL PRIMARY KEY,
-    titulo VARCHAR(150) NOT NULL,
-    recompensa DECIMAL(10,2),
-    dificuldade VARCHAR(20)
+    titulo VARCHAR(255) NOT NULL,
+    recompensa DECIMAL(10, 2),
+    dificuldade VARCHAR(50)
 );
+
+## 📂 Organização do Código (MVC)
+O código fonte principal encontra-se dentro da pasta taverna-rpg:
+
+📂 app/Models:
+
+Heroi.php: Mapeia a tabela aquiles_rpg.herois.
+
+Missao.php: Mapeia a tabela aquiles_rpg.missoes.
+
+📂 app/Http/Controllers:
+
+HeroiController.php: Lógica de CRUD para heróis.
+
+MissaoController.php: Lógica de CRUD para missões.
+
+📂 resources/views:
+
+Arquivos .blade.php contendo o HTML e a interface do usuário.
+
+📂 routes:
+
+web.php: Definição das rotas e URLs amigáveis.
+
+## ✒️ Autor
+Desenvolvido por Aquiles Disciplina de Desenvolvimento Web - IFMG
